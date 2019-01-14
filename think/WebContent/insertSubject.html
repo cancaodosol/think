@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<title>サブジェクト追加</title>
+</head>
+<body>
+	<div id=header>
+		<h1>WebApp Subject</h1>
+		<h3><a href="SubjectListServlet">一覧へ</a></h3>
+	</div>
+	<div id=main>
+		<form action="SubjectInsertServlet" method= "POST">
+			<div class = title>
+				タイトル<br>
+				<textarea name="title" rows="1" cols="70"></textarea><br>
+			</div>
+
+			<div class = title>
+				URL<br>
+				<textarea name="url" rows="1" cols="70"></textarea><br>
+			</div>
+
+			<div class = content>
+				内容<br>
+				<textarea id = "content" name="content" rows="20" cols="85"></textarea><br>
+			</div>
+			<input type="submit" value="追加">
+		</form>
+	</div>
+	<div id=footer>
+		<button id = "add_h2">h2</button>
+		<button id = "add_h2">h3</button>
+		<button id = "add_p">p</button>
+	</div>
+
+	<script>
+		var add_p = document.getElementById("add_p");
+		var add_h2 = document.getElementById("add_h2");
+		var add_h3 = document.getElementById("add_h3");
+		var content = document.getElementById("content");
+
+		add_p.addEventListener("click",function(){
+			content.value += "<p></p>";
+		});
+		add_h2.addEventListener("click",function(){
+			content.value += "<h2></h2>";
+		});
+		add_h3.addEventListener("click",function(){
+			content.value += "<h3></h3>";
+		});
+
+
+	</script>
+
+</body>
+</html>
