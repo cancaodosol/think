@@ -45,13 +45,13 @@
 			var content = document.getElementById("content");
 
 			add_p.addEventListener("click",function(){
-				content.value += "<p></p>";
+				content.value += "\n<p></p>";
 			});
 			add_h2.addEventListener("click",function(){
-				content.value += "<h2></h2>";
+				content.value += "\n<h2></h2>";
 			});
 			add_h3.addEventListener("click",function(){
-				content.value += "<h3></h3>";
+				content.value += "\n<h3></h3>";
 			});
 
 

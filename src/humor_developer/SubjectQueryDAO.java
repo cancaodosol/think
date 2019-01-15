@@ -21,7 +21,7 @@ public class SubjectQueryDAO {
 		Class.forName(DRIVER);
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-		String sql = "SELECT * FROM subjects ORDER BY modified DESC";
+		String sql = "SELECT * FROM subjects ORDER BY modified DESC,subjectid";
 
 		PreparedStatement state = conn.prepareStatement(sql);
 		ResultSet result = state.executeQuery();

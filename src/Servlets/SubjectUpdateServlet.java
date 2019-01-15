@@ -57,6 +57,8 @@ public class SubjectUpdateServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
+		String q1 = (String)request.getParameter("q1");
+
 		Subject subject = new Subject();
 		subject.setSubjectid(Integer.parseInt((String)request.getParameter("subjectid")));
 		subject.setTitle((String)request.getParameter("title"));
@@ -65,12 +67,18 @@ public class SubjectUpdateServlet extends HttpServlet {
 		subject.setCategory1(Integer.parseInt((String)request.getParameter("category1")));
 		subject.setCategory2(Integer.parseInt((String)request.getParameter("category2")));
 		subject.setCategory3(Integer.parseInt((String)request.getParameter("category3")));
-		subject.setModified(new Date(System.currentTimeMillis()));
+
+		String modified = (String)request.getParameter("modified");
+
+		if(q1.equals("commit")) {
+			subject.setModified(new Date(System.currentTimeMillis()));
+		}else {
+			subject.setModified(Date.valueOf(modified));
+		}
 
 		try {
 			new SubjectUpdateDAO().updateSubject(subject);
 			request.getRequestDispatcher("SubjectDetailServlet?subjectid="+ subject.getSubjectid()).forward(request, response);
-
 		}catch(SQLException e){
 			e.printStackTrace();
 		}catch(ClassNotFoundException e) {

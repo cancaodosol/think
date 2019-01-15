@@ -2,7 +2,7 @@
 
 
 body {
-	width : 650px;
+	width : 1000px;
 	margin-top: 25px;
 	margin-left: 30px;
 	margin-bottom: 25px;
@@ -12,14 +12,15 @@ body {
 
 #container{
 	display: grid;
-	grid-template-rows: 900px 300px;
+	grid-template-rows: 600px 300px;
 	grid-template-columns: 670px 1fr;
 }
 
 
 .main{
-	width : 650px;
+	width : 800px;
 	margin : 10px;
+	potision : absolute;
 }
 
 
@@ -41,12 +42,6 @@ body {
 	grid-column: 2/3;
 }
 
-
-.textListBox {
-	margin-bottom: 25px;
-}
-
-
 #textDetailBox .title{
 	font-size:16px;
 	text-align:left;
@@ -65,33 +60,56 @@ body {
 	margin-bottom:20px;
 }
 
+.textListBox {
+	margin: 10px;
+	height : 300px;
+	width : 300px;
+	overflow:hidden;
+
+	border: thin dashed #67c5ff;
+
+	position:relative;
+	float:right;
+}
+
 .textListBox .title{
 	font-size:16px;
+	font-weight:bold;
+	color : #67c5ff;
+
 	text-align:left;
+	margin-top:10px;
 	margin-left:10px;
+
 	border-bottom : solid 1px;
 }
 
 .textListBox .modified{
-	margin-top :9px;
-	margin-left:5px;
+	margin-top :4px;
+	margin-right:10px;
+	text-align:right;
+	border-bottom : solid 1px;
 }
 
 .textListBox .contents{
-	height : 83px;
-	margin-left:20px;
-	margin-right:20px;
-	margin-bottom:20px;
+	height : 192px;
+	margin-top:5px;
+	margin-left:15px;
+	margin-right:15px;
+	margin-bottom:8px;
 	overflow:hidden;
 }
 
 .textListBox .content{
-	margin-left:20px;
-	margin-right:20px;
-	margin-bottom:20px;
+	margin-left:40px;
+	margin-right:40px;
+	margin-bottom:10px;
 }
 
 .textListBox .footer{
+	font-weight:bold;
+	margin-right:15px;
+	margin-bottm:5px;
 	text-align:right;
 }
 
@@ -121,4 +139,19 @@ body {
 	margin-right:5px;
     margin-bottom:8px;
 	text-align:right;
+}
+
+.square_btn {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+}
+
+.square_btn:hover {
+    background: #67c5ff;
+    color: white;
 }

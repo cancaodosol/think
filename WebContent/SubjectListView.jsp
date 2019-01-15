@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="style.css" type="text/css">
-	<title>Insert title here</title>
+	<title>Subject List View</title>
 </head>
 <body>
 	<div id = header>
@@ -27,7 +27,7 @@
 				</div><!--end.title-->
 
 				<div class = "modified">
-					<%=subject.getModified() %><hr>
+					<%=subject.getModified() %><br>
 				</div><!--end.modified-->
 
 				<div class = "contents">
@@ -37,21 +37,22 @@
 				<div class = "footer">
 
 
-				<%if(subject.getLinkurl()!=null){ %>
-					[<a href = "<%=subject.getLinkurl() %>">Link</a>]
-				<%}else{%>
-					[None]
-				<%} %>
 
-
-				[<a href = "SubjectDetailServlet?subjectid=<%=subject.getSubjectid()%>">詳細</a>]
-				[<a href = "SubjectUpdateServlet?subjectid=<%=subject.getSubjectid()%>">編集</a>]
-				[<a href = "SubjectDeleteServlet?subjectid=<%=subject.getSubjectid()%>">削除</a>]
+				<a href = "<%=subject.getLinkurl() %>" class="square_btn">Link</a>
+				<a href="SubjectDetailServlet?subjectid=<%=subject.getSubjectid()%>" class="square_btn">詳細</a>
+				<a href = "SubjectUpdateServlet?subjectid=<%=subject.getSubjectid()%>" class="square_btn">編集</a>
+				<a href = "SubjectDeleteServlet?subjectid=<%=subject.getSubjectid()%>" class="square_btn" onclick="check(this)">削除</a>
 				</div><!-- end.footer -->
 			</div><!--end.textListBox-->
 		<%} %>
 	</div>
-
-
+	<script>
+		function check(element){
+			var result = window.confirm('このサブジェクトを本当に削除してもいいですか？');
+			if(!result){
+				element.href = "SubjectListServlet";
+			}
+		}
+	</script>
 </body>
 </html>

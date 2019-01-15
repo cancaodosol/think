@@ -35,10 +35,14 @@
 			</div>
 
 			<input type="hidden" name="subjectid" value="<%=subject.getSubjectid()%>">
+			<input type="hidden" name="modified" value="<%=subject.getModified()%>">
 			<input type="hidden" name="category1" value="<%=subject.getCategory1()%>">
 			<input type="hidden" name="category2" value="<%=subject.getCategory2()%>">
 			<input type="hidden" name="category3" value="<%=subject.getCategory3()%>">
-			<input type="submit" value="変更">
+			更新時刻を
+			<input type="radio" name="q1" value="commit"> 更新する
+			<input type="radio" name="q1" value="discommit" checked> 更新しない
+			<input type="submit" value="更新">
 		</form>
 	</div>
 	<div id=footer>

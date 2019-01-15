@@ -57,16 +57,16 @@
 				</div>
 				<div class = content>
 					コメント内容
-					<code>&lt;h2&gt;</code><code>&lt;/h2&gt;</code>
-					<code>&lt;h3&gt;</code><code>&lt;/h3&gt;</code>
-					<code>&lt;p&gt;</code><code>&lt;/p&gt;</code><br>
-					<textarea name="content" rows="13" cols="85"></textarea><br>
+					<textarea id="content" name="content" rows="13" cols="85"></textarea><br>
 				</div>
 
 				<input type="hidden" name="subjectid" value="<%=subject.getSubjectid()%>">
 				<input type="submit" value="コメント">
 			</form>
-		</div><!-- end.insertBox -->
+			<button id = "add_h2">h2</button>
+			<button id = "add_h3">h3</button>
+			<button id = "add_p">p</button>
+			</div><!-- end.insertBox -->
 
 		<div id = "commentListBox">
 			<%List<Comment> comments = (List<Comment>)request.getAttribute("comments"); %>
@@ -90,6 +90,22 @@
 			<%} %>
 		</div><!-- end.commentListBox -->
 	</div>
+	<script>
+		var add_p = document.getElementById("add_p");
+		var add_h2 = document.getElementById("add_h2");
+		var add_h3 = document.getElementById("add_h3");
+		var content = document.getElementById("content");
+
+		add_p.addEventListener("click",function(){
+			content.value += "\n<p></p>";
+		});
+		add_h2.addEventListener("click",function(){
+			content.value += "\n<h2></h2>";
+		});
+		add_h3.addEventListener("click",function(){
+			content.value += "\n<h3></h3>";
+		});
+	</script>
 <body>
 
 </body>

@@ -20,7 +20,7 @@ public class CommentQueryDAO {
 		Class.forName(DRIVER);
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-		String sql = "SELECT * FROM comments WHERE subjectid = ? ORDER BY modified";
+		String sql = "SELECT * FROM comments WHERE subjectid = ? ORDER BY modified,commentid";
 
 		PreparedStatement state = conn.prepareStatement(sql);
 		state.setInt(1, subjectid);
