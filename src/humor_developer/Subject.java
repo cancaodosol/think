@@ -14,11 +14,41 @@ import java.sql.Date;
 
 	private int category1 = 0;
 
+	private String category1name = null;
+
 	private int category2 = 0;
+
+	private String category2name = null;
 
 	private int category3 = 0;
 
+	private String category3name = null;
+
 	private Date modified = null;
+
+	public String getCategory1name() {
+		return category1name;
+	}
+
+	public void setCategory1name(String category1name) {
+		this.category1name = category1name;
+	}
+
+	public String getCategory2name() {
+		return category2name;
+	}
+
+	public void setCategory2name(String category2name) {
+		this.category2name = category2name;
+	}
+
+	public String getCategory3name() {
+		return category3name;
+	}
+
+	public void setCategory3name(String category3name) {
+		this.category3name = category3name;
+	}
 
 	public int getSubjectid() {
 		return subjectid;

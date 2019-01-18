@@ -34,16 +34,10 @@
 			</div>
 
 			<div class = "footer">
-
-				<%if(subject.getLinkurl()!=null){ %>
-					[<a href = "<%=subject.getLinkurl() %>">Link</a>]
-				<%}else{%>
-					[None]
-				<%} %>
-
-				[<a href = "SubjectDetailServlet?subjectid=<%=subject.getSubjectid()%>">詳細</a>]
-				[<a href = "SubjectUpdateServlet?subjectid=<%=subject.getSubjectid()%>">編集</a>]
-				[<a href = "SubjectDeleteServlet?subjectid=<%=subject.getSubjectid()%>">削除</a>]
+				<a href = "<%=subject.getLinkurl() %>" class="square_btn">Link</a>
+				<a href = "SubjectDetailServlet?subjectid=<%=subject.getSubjectid()%>" class="square_btn">詳細</a>
+				<a href = "SubjectUpdateServlet?subjectid=<%=subject.getSubjectid()%>" class="square_btn">編集</a>
+				<a href = "SubjectDeleteServlet?subjectid=<%=subject.getSubjectid()%>" class="square_btn" onclick="check(this)">削除</a>
 			</div><!-- end.footer -->
 
 		</div><!-- end.textDetailBox -->
@@ -61,7 +55,7 @@
 				</div>
 
 				<input type="hidden" name="subjectid" value="<%=subject.getSubjectid()%>">
-				<input type="submit" value="コメント">
+				<input type="submit" value="コメント" >
 			</form>
 			<button id = "add_h2">h2</button>
 			<button id = "add_h3">h3</button>
@@ -83,8 +77,8 @@
 
 				<div class = "modified">
 					<%=comment.getModified() %>
-					[<a href="CommentUpdateServlet?commentid=<%=comment.getCommentid()%>">編集</a>]
-					[<a href="CommentDeleteServlet?subjectid=<%=comment.getSubjectid()%>&commentid=<%=comment.getCommentid()%>">削除</a>]
+					<a href="CommentUpdateServlet?commentid=<%=comment.getCommentid()%>" class="square_btn" >編集</a>
+					<a href="CommentDeleteServlet?subjectid=<%=comment.getSubjectid()%>&commentid=<%=comment.getCommentid()%>" class="square_btn" onclick="check(this)">削除</a>
 				</div><!-- end.modified -->
 
 			<%} %>
@@ -105,6 +99,13 @@
 		add_h3.addEventListener("click",function(){
 			content.value += "\n<h3></h3>";
 		});
+
+		function check(element){
+			var result = window.confirm('このサブジェクトを本当に削除してもいいですか？');
+			if(!result){
+				element.href = "SubjectDetailServlet?subjectid=<%=subject.getSubjectid()%>";
+			}
+		}
 	</script>
 <body>
 

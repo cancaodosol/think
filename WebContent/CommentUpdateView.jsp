@@ -26,7 +26,6 @@
 			<div class = content>
 				内容<br>
 				<textarea name="content" rows="20" cols="85"><%=comment.getContent() %></textarea><br>
-
 			</div>
 
 			<input type="hidden" name="subjectid" value="<%=comment.getSubjectid()%>">

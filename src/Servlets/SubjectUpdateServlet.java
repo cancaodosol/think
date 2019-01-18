@@ -3,6 +3,7 @@ package Servlets;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,9 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import humor_developer.CategoryQueryDAO;
 import humor_developer.Subject;
 import humor_developer.SubjectQueryDAO;
 import humor_developer.SubjectUpdateDAO;
+import humor_developer.category;
 
 /**
  * Servlet implementation class SubjectUpdateServlet
@@ -38,7 +41,8 @@ public class SubjectUpdateServlet extends HttpServlet {
 		try {
 			Subject subject = new SubjectQueryDAO().getSubject(Integer.parseInt(request.getParameter("subjectid")));
 			request.setAttribute("subject", subject);
-
+			List<category> ctgs = new CategoryQueryDAO().getCategorys();
+			request.setAttribute("ctgs", ctgs);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}catch(ClassNotFoundException e) {

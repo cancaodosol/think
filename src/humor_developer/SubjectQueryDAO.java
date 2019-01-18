@@ -1,7 +1,7 @@
 package humor_developer;
 
+import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,34 +20,31 @@ public class SubjectQueryDAO {
 
 		Class.forName(DRIVER);
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		String sql = null;
 
-		String sql = "SELECT * FROM subjects ORDER BY modified DESC,subjectid";
+		try {
+			sql = ReadFile.readSql("subjectlist.sql");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 
 		PreparedStatement state = conn.prepareStatement(sql);
 		ResultSet result = state.executeQuery();
 
 		List<Subject> subjects = new ArrayList<Subject>();
 		while(result.next()) {
-			int subjectid = result.getInt("subjectid");
-			String title = result.getString("title");
-			String content = result.getString("content");
-			String linkurl = result.getString("linkurl");
-			int category1 = result.getInt("category1");
-			int category2 = result.getInt("category2");
-			int category3 = result.getInt("category3");
-			Date modified = result.getDate("modified");
-
 			Subject subject = new Subject();
-
-			subject.setSubjectid(subjectid);
-			subject.setTitle(title);
-			subject.setContent(content);
-			subject.setLinkurl(linkurl);
-			subject.setCategory1(category1);
-			subject.setCategory2(category2);
-			subject.setCategory3(category3);
-			subject.setModified(modified);
-
+			subject.setSubjectid(result.getInt("subjectid"));
+			subject.setTitle(result.getString("title"));
+			subject.setContent(result.getString("content"));
+			subject.setLinkurl(result.getString("linkurl"));
+			subject.setCategory1(result.getInt("category1"));
+			subject.setCategory1name(result.getString("TC1"));
+			subject.setCategory1(result.getInt("category2"));
+			subject.setCategory2name(result.getString("TC2"));
+			subject.setCategory1(result.getInt("category3"));
+			subject.setCategory3name(result.getString("TC3"));
+			subject.setModified(result.getDate("modified"));
 			subjects.add(subject);
 		}
 
@@ -55,7 +52,7 @@ public class SubjectQueryDAO {
 		state.close();
 		conn.close();
 
-		return subjects;
+ 		return subjects;
 	}
 
 
@@ -64,7 +61,13 @@ public class SubjectQueryDAO {
 		Class.forName(DRIVER);
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-		String sql = "SELECT * FROM subjects WHERE subjectid = ?";
+		String sql = null;
+
+		try {
+			sql = ReadFile.readSql("one_subject.sql");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 
 		PreparedStatement state = conn.prepareStatement(sql);
 		state.setInt(1, subjectid);
@@ -72,24 +75,18 @@ public class SubjectQueryDAO {
 
 		result.next();
 
-		String title = result.getString("title");
-		String content = result.getString("content");
-		String linkurl = result.getString("linkurl");
-		int category1 = result.getInt("category1");
-		int category2 = result.getInt("category2");
-		int category3 = result.getInt("category3");
-		Date modified = result.getDate("modified");
-
 		Subject subject = new Subject();
-
-		subject.setSubjectid(subjectid);
-		subject.setTitle(title);
-		subject.setContent(content);
-		subject.setLinkurl(linkurl);
-		subject.setCategory1(category1);
-		subject.setCategory2(category2);
-		subject.setCategory3(category3);
-		subject.setModified(modified);
+		subject.setSubjectid(result.getInt("subjectid"));
+		subject.setTitle(result.getString("title"));
+		subject.setContent(result.getString("content"));
+		subject.setLinkurl(result.getString("linkurl"));
+		subject.setCategory1(result.getInt("category1"));
+		subject.setCategory1name(result.getString("TC1"));
+		subject.setCategory1(result.getInt("category2"));
+		subject.setCategory2name(result.getString("TC2"));
+		subject.setCategory1(result.getInt("category3"));
+		subject.setCategory3name(result.getString("TC3"));
+		subject.setModified(result.getDate("modified"));
 
 		result.close();
 		state.close();

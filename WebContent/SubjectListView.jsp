@@ -27,6 +27,9 @@
 				</div><!--end.title-->
 
 				<div class = "modified">
+					<%if(!(subject.getCategory1name().equals(null))){%><div class = ctg><%=subject.getCategory1name() %></div><%} %>
+					<%if(!(subject.getCategory2name().equals(null))){%><div class = ctg><%=subject.getCategory2name() %></div><%} %>
+					<%if(!(subject.getCategory3name().equals(null))){%><div class = ctg><%=subject.getCategory3name() %></div><%} %>
 					<%=subject.getModified() %><br>
 				</div><!--end.modified-->
 

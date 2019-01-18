@@ -1,3 +1,5 @@
+<%@page import="humor_developer.category"%>
+<%@page import="java.util.List"%>
 <%@page import="humor_developer.Subject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +12,7 @@
 </head>
 <body>
 	<%Subject subject = (Subject)request.getAttribute("subject"); %>
+	<%List<category> ctgs = (List<category>)request.getAttribute("ctgs"); %>
 	<div id = header>
 		<h1>WebApp Subject</h1>
 		<h3><a href="SubjectListServlet">一覧へ</a></h3>
@@ -28,15 +31,21 @@
 				<textarea name="url" rows="1" cols="70"><%=subject.getLinkurl() %></textarea><br>
 			</div>
 
+			<div class = category>
+				<select name="category1">
+				<option value="0">未分類</option>
+					<%for(category ctg : ctgs){%><option value="<%=ctg.getCategory1()%>"><%=ctg.getName() %></option>
+					<% } %>
+				</select>
+			</div>
+
 			<div class = content>
 				内容<br>
 				<textarea id="content" name="content" rows="20" cols="85"><%=subject.getContent() %></textarea><br>
-
 			</div>
 
 			<input type="hidden" name="subjectid" value="<%=subject.getSubjectid()%>">
 			<input type="hidden" name="modified" value="<%=subject.getModified()%>">
-			<input type="hidden" name="category1" value="<%=subject.getCategory1()%>">
 			<input type="hidden" name="category2" value="<%=subject.getCategory2()%>">
 			<input type="hidden" name="category3" value="<%=subject.getCategory3()%>">
 			更新時刻を
